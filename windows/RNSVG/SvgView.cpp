@@ -17,7 +17,9 @@ using namespace Windows::Graphics::Display;
 
 namespace winrt::RNSVG::implementation {
 SvgView::SvgView(IReactContext const &context) : m_reactContext(context) {
-  m_scale = static_cast<float>(DisplayInformation::GetForCurrentView().ResolutionScale()) / 100;
+  // m_scale = static_cast<float>(DisplayInformation::GetForCurrentView().ResolutionScale()) / 100;
+  // turning off system scaling of icons
+  m_scale = 1;
 
   m_canvasDrawRevoker = m_canvas.Draw(winrt::auto_revoke, {get_weak(), &SvgView::Canvas_Draw});
   m_canvasCreateResourcesRevoker = m_canvas.CreateResources(winrt::auto_revoke, {get_weak(), &SvgView::Canvas_CreateResources});
